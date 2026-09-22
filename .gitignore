@@ -1,0 +1,24 @@
+## Build outputs
+bin/
+obj/
+publish/
+
+## IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Dependencies
+*.dll
+*.exe
+!assets/
+
+## Temp
+*.tmp
+*.bak
