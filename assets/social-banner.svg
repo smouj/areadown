@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">AreaDown</title>
+  <desc id="desc">AreaDown social banner — download arrow in teal on dark background with crop-frame corners.</desc>
+  <rect width="1280" height="640" fill="#0F0F12"/>
+  <g fill="none" stroke="#F4F1EA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M540 200v-60h60"/><path d="M680 140h60v60"/>
+    <path d="M540 440v60h60"/><path d="M680 500h60v-60"/>
+  </g>
+  <g fill="none" stroke="#2DD4A8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M640 270v100"/><path d="M600 330l40 40 40-40"/><path d="M560 370h160"/>
+  </g>
+  <text x="640" y="540" text-anchor="middle" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="3">AreaDown</text>
+  <line x1="440" y1="580" x2="840" y2="580" stroke="#2DD4A8" stroke-width="4"/>
+</svg>
