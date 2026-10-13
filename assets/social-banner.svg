@@ -1,14 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
-  <title id="title">AreaDown</title>
-  <desc id="desc">AreaDown social banner — download arrow in teal on dark background with crop-frame corners.</desc>
-  <rect width="1280" height="640" fill="#0F0F12"/>
-  <g fill="none" stroke="#F4F1EA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M540 200v-60h60"/><path d="M680 140h60v60"/>
-    <path d="M540 440v60h60"/><path d="M680 500h60v-60"/>
+  <title id="title">AreaDown — video downloader</title>
+  <desc id="desc">PASTE A URL · PICK QUALITY · DOWNLOAD. Shared visual identity from the Area desktop app suite.</desc>
+  <rect width="1280" height="640" fill="#11151C"/>
+  <g transform="translate(84 64) scale(1.0)">
+    <rect x="22" y="22" width="468" height="468" rx="112" fill="#171E28" stroke="#303B4B" stroke-width="4"/>
+    <g fill="none" stroke="#EEF1F5" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M188 112h-32q-44 0-44 44v32"/>
+      <path d="M324 112h32q44 0 44 44v32"/>
+      <path d="M112 324v32q0 44 44 44h32"/>
+      <path d="M324 400h32q44 0 44-44v-32"/>
+    </g>
+
+  <g fill="none" stroke="#38D6B2" stroke-width="25" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 194v91M220 250l36 36 36-36"/>
+    <path d="M202 315h108"/>
   </g>
-  <g fill="none" stroke="#2DD4A8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M640 270v100"/><path d="M600 330l40 40 40-40"/><path d="M560 370h160"/>
   </g>
-  <text x="640" y="540" text-anchor="middle" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="3">AreaDown</text>
-  <line x1="440" y1="580" x2="840" y2="580" stroke="#2DD4A8" stroke-width="4"/>
+  <text x="690" y="276" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="106" font-weight="700" letter-spacing="-2"><tspan fill="#EEF1F5">Area</tspan><tspan fill="#38D6B2">Down</tspan></text>
+  <text x="694" y="352" fill="#A7B1BF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="1.1">PASTE A URL · PICK QUALITY · DOWNLOAD</text>
+  <path d="M694 398h170" stroke="#38D6B2" stroke-width="7" stroke-linecap="round"/>
+  <text x="694" y="452" fill="#A7B1BF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3">AREA SUITE · WINDOWS DESKTOP</text>
 </svg>

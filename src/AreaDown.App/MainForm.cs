@@ -681,6 +681,8 @@ public sealed class MainForm : Form
             var assetsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "assets", "AreaDown.ico");
             if (File.Exists(assetsPath))
                 return new Icon(assetsPath);
+
+            return Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
         catch
         {
