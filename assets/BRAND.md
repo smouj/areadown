@@ -1,26 +1,24 @@
-# AreaDown brand
+# AreaDown visual identity
 
-AreaDown is the download companion of the Area suite. Its identity keeps the shared crop-frame language, then adds a downward arrow with baseline and a teal accent so the product is related to the suite without being confused.
+AreaDown is the video downloader in the Area desktop suite. Its icon uses the shared crop-frame mark and dark tile, with #38D6B2 reserved for its product action.
 
-## Core assets
+## Assets
 
-| Asset | Use |
+| Asset | Purpose |
 | --- | --- |
-| `mark.png` | Transparent icon for app surfaces, favicons, and product UI |
-| `logo.png` | Dark lockup for README, documentation, and release pages |
-| `social-banner.png` | GitHub/social preview banner |
-| `AreaDown.ico` | Windows executable and shortcut icon |
-| `logo.svg` | Vector-friendly lockup for future design tooling |
+| `mark.svg` | Editable vector source for the app icon |
+| `mark.png` | 512 x 512 icon for documentation and product surfaces |
+| `logo.svg` / `logo.png` | Square logo lockup for README and documentation |
+| `social-banner.svg` / `social-banner.png` | Repository and social preview |
+| `AreaDown.ico` | Windows executable, window and shortcut icon; includes 16, 24, 32, 48, 64, 128 and 256 px images |
 
-## Tokens
+## Shared Area system
 
-- Deep charcoal: `#0F0F12`
-- Warm ivory: `#F4F1EA`
-- AreaDown teal: `#2DD4A8`
-- Muted graphite: `#25252B`
+- Tile: `#171E28`
+- Selection frame and foreground: `#EEF1F5`
+- App accent: `#38D6B2`
+- Shared frame: four rounded crop corners around one simple product glyph
+- Use flat fills and strokes. Keep the silhouette and accent clear at small Windows icon sizes.
+- Keep `mark.svg` as the source for icon artwork; export raster assets from it without adding filters, shadows or gradients.
 
-Use the teal only as an accent. The crop frame and wordmark should remain ivory on dark surfaces; never add gradients, shadows, or a second highlight color.
-
-## Relationship to the Area suite
-
-AreaRec owns capture and uses a recording red accent. AreaCut owns edit and uses coral. AreaDown owns download and uses teal. AreaSnap owns screenshot and uses amber. All four products share the four-corner selection frame and a dark local-first presentation.
+The companion apps use the same frame and tile with distinct action glyphs: AreaRec records, AreaCut edits, AreaDown downloads and AreaSnap captures screenshots.
