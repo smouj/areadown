@@ -10,11 +10,11 @@ using AreaDown.Downloader;
 namespace AreaDown.App;
 
 /// <summary>
-/// Main application form — matches AreaRec's WinForms style with Segoe UI, 420px width.
+/// Main application form — matches Voryda Rec's WinForms style with Segoe UI, 420px width.
 /// </summary>
 public sealed class MainForm : Form
 {
-    // Layout constants matching AreaRec style
+    // Layout constants matching Voryda Rec style
     private const int FormWidth = 420;
     private const int PaddingX = 20;
     private const int ControlHeight = 32;
@@ -61,7 +61,7 @@ public sealed class MainForm : Form
         _settings = AppSettings.Load();
 
         // Form setup
-        Text = "AreaDown";
+        Text = "Voryda Down";
         Size = new Size(FormWidth, 520);
         MinimumSize = new Size(FormWidth, 480);
         MaximumSize = new Size(FormWidth + 100, 800);
@@ -76,7 +76,7 @@ public sealed class MainForm : Form
         // Title
         _titleLabel = new Label
         {
-            Text = "AreaDown",
+            Text = "Voryda Down",
             Font = new Font("Segoe UI", 18f, FontStyle.Bold),
             ForeColor = LabelColor,
             Location = new Point(PaddingX, contentY),
@@ -304,7 +304,7 @@ public sealed class MainForm : Form
         _notifyIcon = new NotifyIcon
         {
             Icon = LoadIcon() ?? SystemIcons.Application,
-            Text = "AreaDown",
+            Text = "Voryda Down",
             Visible = false,
             ContextMenuStrip = _trayMenu
         };
@@ -394,7 +394,7 @@ public sealed class MainForm : Form
         var url = _urlTextBox.Text.Trim();
         if (string.IsNullOrWhiteSpace(url))
         {
-            MessageBox.Show("Please enter a video URL.", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Please enter a video URL.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             _urlTextBox.Focus();
             return;
         }
@@ -402,7 +402,7 @@ public sealed class MainForm : Form
         if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
             (uri.Scheme != "http" && uri.Scheme != "https"))
         {
-            MessageBox.Show("Please enter a valid HTTP/HTTPS URL.", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Please enter a valid HTTP/HTTPS URL.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             _urlTextBox.Focus();
             return;
         }
@@ -410,7 +410,7 @@ public sealed class MainForm : Form
         var saveFolder = _saveFolderTextBox.Text.Trim();
         if (string.IsNullOrWhiteSpace(saveFolder))
         {
-            MessageBox.Show("Please specify a save folder.", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Please specify a save folder.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             _saveFolderTextBox.Focus();
             return;
         }
@@ -423,7 +423,7 @@ public sealed class MainForm : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Cannot create folder: {ex.Message}", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Cannot create folder: {ex.Message}", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -437,7 +437,7 @@ public sealed class MainForm : Form
         {
             if (endTs.HasValue && endTs.Value <= startTs.Value)
             {
-                MessageBox.Show("End timestamp must be after start timestamp.", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("End timestamp must be after start timestamp.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             clip = new TimestampClip(startTs.Value, endTs);
@@ -480,7 +480,7 @@ public sealed class MainForm : Form
         {
             var result = MessageBox.Show(
                 "A download is in progress. Are you sure you want to exit?",
-                "AreaDown",
+                "Voryda Down",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -526,14 +526,14 @@ public sealed class MainForm : Form
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show(ex.Message, "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SetDownloadingState(false);
                 SetStatus("Error: yt-dlp not found");
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to start download:\n{ex.Message}", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to start download:\n{ex.Message}", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SetDownloadingState(false);
                 SetStatus("Error starting download");
                 return;
@@ -543,7 +543,7 @@ public sealed class MainForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Unexpected error:\n{ex.Message}", "AreaDown", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Unexpected error:\n{ex.Message}", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Error);
             SetDownloadingState(false);
             SetStatus("Error");
         }
