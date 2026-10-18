@@ -1,9 +1,9 @@
-# AreaDown
+# Voryda Down
 
 > Paste a URL. Pick quality. Download.
 
 A native Windows desktop video downloader built with .NET 8 WinForms.
-Part of the [Area Suite](https://github.com/smouj) — simple, native tools for everyday tasks.
+Part of the **Voryda Suite** — simple, native, local-first tools for everyday tasks.
 
 ## Features
 
