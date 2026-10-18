@@ -25,8 +25,9 @@
   <a href="#overview">Overview</a> ·
   <a href="#current-status">Status</a> ·
   <a href="#usage">Usage</a> ·
-  <a href="#build-from-source">Build</a> ·
-  <a href="#privacy-and-network-use">Privacy</a>
+  <a href="#build">Build</a> ·
+  <a href="#documentation">Docs</a> ·
+  <a href="#privacy">Privacy</a>
 </p>
 
 ## Overview
@@ -122,11 +123,11 @@ The `AreaDown` settings path and internal project names are retained for compati
 - FFmpeg available beside the application or on `PATH` for workflows that require merging or media processing.
 - .NET 8 SDK only when building from source.
 
-## Build from source
+## Build
 
 ```powershell
-git clone https://github.com/smouj/areadown
-cd areadown
+git clone https://github.com/smouj/voryda-down
+cd voryda-down
 dotnet build -c Release
 ```
 
@@ -144,7 +145,11 @@ dotnet publish src\AreaDown.App -c Release -r win-x64 --self-contained
 
 For a runnable local package, place `yt-dlp.exe` and, when needed, `ffmpeg.exe` next to the published executable or make them available through `PATH`.
 
-## Privacy and network use
+## Documentation
+
+This repository keeps its product and developer guidance in this README; no separate docs tree is maintained.
+
+## Privacy
 
 Voryda Down stores its own preferences locally and contains no account system or application telemetry in the current code. Downloading media is inherently a network operation: the application launches yt-dlp, which connects to the URL and services required to retrieve the requested media.
 
@@ -162,11 +167,11 @@ The Voryda Down source code is distributed under the **MIT License**. See [LICEN
 </p>
 
 <p align="center">
-  <a href="https://github.com/smouj/areasnap">Snap</a>
+  <a href="https://github.com/smouj/voryda-snap">Snap</a>
   ·
-  <a href="https://github.com/smouj/arearec">Rec</a>
+  <a href="https://github.com/smouj/voryda-rec">Rec</a>
   ·
-  <a href="https://github.com/smouj/areadown">Down</a>
+  <a href="https://github.com/smouj/voryda-down">Down</a>
   ·
-  <a href="https://github.com/smouj/areacut">Cut</a>
+  <a href="https://github.com/smouj/voryda-cut">Cut</a>
 </p>
