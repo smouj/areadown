@@ -36,6 +36,12 @@
 
 The desktop application is written in C# with .NET 8 and WinForms. It tracks progress reported by yt-dlp, supports cancellation, remembers the last URL, quality and destination folder, and moves to the system tray when minimized.
 
+## Screenshot
+
+![Voryda Down screenshot](docs/screenshots/voryda-down.png)
+
+*Captured from the Windows app. Sample URL and local folder values are anonymized where applicable.*
+
 ## Current status
 
 The repository declares version **1.0.0**. There is currently no GitHub Release published for this repository.

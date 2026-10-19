@@ -350,28 +350,6 @@ public sealed class MainForm : Form
 
     // ── Timestamp parsing ──
 
-    private static TimeSpan? ParseTimestamp(string input)
-    {
-        if (string.IsNullOrWhiteSpace(input))
-            return null;
-
-        input = input.Trim();
-
-        // Try HH:MM:SS
-        if (TimeSpan.TryParseExact(input, @"h\:mm\:ss", null, out var hms))
-            return hms;
-
-        // Try MM:SS
-        if (TimeSpan.TryParseExact(input, @"m\:ss", null, out var ms))
-            return ms;
-
-        // Try seconds only
-        if (double.TryParse(input, out var seconds) && seconds >= 0)
-            return TimeSpan.FromSeconds(seconds);
-
-        return null;
-    }
-
     // ── Event handlers ──
 
     private void BrowseButton_Click(object? sender, EventArgs e)
@@ -429,19 +407,31 @@ public sealed class MainForm : Form
         }
 
         var quality = IndexToQuality(_qualityCombo.SelectedIndex);
-        var startTs = ParseTimestamp(_startTimestampTextBox.Text);
-        var endTs = ParseTimestamp(_endTimestampTextBox.Text);
-
-        TimestampClip? clip = null;
-        if (startTs.HasValue)
+        if (!TimestampParser.TryParse(_startTimestampTextBox.Text, out var startTs))
         {
-            if (endTs.HasValue && endTs.Value <= startTs.Value)
-            {
-                MessageBox.Show("End timestamp must be after start timestamp.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            clip = new TimestampClip(startTs.Value, endTs);
+            MessageBox.Show("Enter Start as seconds, MM:SS, or HH:MM:SS.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            _startTimestampTextBox.Focus();
+            return;
         }
+
+        if (!TimestampParser.TryParse(_endTimestampTextBox.Text, out var endTs))
+        {
+            MessageBox.Show("Enter End as seconds, MM:SS, or HH:MM:SS.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            _endTimestampTextBox.Focus();
+            return;
+        }
+
+        var startTime = startTs ?? TimeSpan.Zero;
+        if (endTs.HasValue && endTs.Value <= startTime)
+        {
+            MessageBox.Show("End timestamp must be after start timestamp.", "Voryda Down", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            _endTimestampTextBox.Focus();
+            return;
+        }
+
+        TimestampClip? clip = startTs.HasValue || endTs.HasValue
+            ? new TimestampClip(startTime, endTs)
+            : null;
 
         // Save settings
         _settings = _settings with
@@ -563,7 +553,7 @@ public sealed class MainForm : Form
             case DownloadEventType.Progress:
                 if (evt.Percent.HasValue)
                 {
-                    _progressBar.Value = Math.Min((int)Math.Round(evt.Percent.Value), 100);
+                    _progressBar.Value = Math.Clamp((int)Math.Round(evt.Percent.Value), 0, 100);
                 }
                 var parts = new List<string>();
                 if (evt.Size is not null) parts.Add(evt.Size);
@@ -633,10 +623,6 @@ public sealed class MainForm : Form
         _saveFolderTextBox.Enabled = !downloading;
         _browseButton.Enabled = !downloading;
 
-        if (!downloading)
-        {
-            _progressBar.Value = 0;
-        }
     }
 
     private void SetStatus(string text)
