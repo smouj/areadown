@@ -1,17 +1,18 @@
 # Voryda Down brand
 
-Voryda Down is the download utility in the Voryda family. Its mark combines the shared four-corner frame with a teal downward arrow and baseline so the function remains recognizable independently of the product name.
+Voryda Down is the download utility in the Voryda family. Its approved icon pairs a glowing teal download arrow with an ivory receiving tray on the shared dark rounded-square tile.
 
 ## Core assets
 
 | Asset | Purpose |
 | --- | --- |
-| `logo.png` | Canonical transparent lockup for light surfaces. 256×256. |
-| `logo-dark.png` | Canonical transparent lockup for dark surfaces. 256×256. |
-| `mark.png` | Compact product mark retained for app surfaces and small placements. |
-| `AreaDown.ico` | Windows executable and shortcut icon; the legacy filename is retained for compatibility. |
-| `logo.svg` | Earlier scalable family asset; not used as the canonical README lockup after the Voryda refresh. |
-| `social-banner.png` / `social-banner.svg` | Optional social-preview assets. They are not embedded in the README. |
+| `voryda-down.png` | Approved 1254×1254 RGBA master icon from the final icon pack. |
+| `logo.png` / `logo-dark.png` | README-compatible paths containing the same approved icon for both color schemes. |
+| `mark.png` | Windows icon source; kept identical to the approved master. |
+| `AreaDown.ico` | Multi-resolution Windows executable, window and shortcut icon. |
+| `tools/BuildAppIcon.ps1` | Rebuilds the Windows icon at 256, 128, 64, 48, 32, 24 and 16 pixels, preserving transparency. |
+| `logo.svg` | Earlier scalable family artwork retained for reference; the README uses the approved icon. |
+| `social-banner.png` / `social-banner.svg` | Optional legacy social-preview artwork; not embedded in the README. |
 
 ## Product token
 
@@ -20,9 +21,9 @@ Voryda Down is the download utility in the Voryda family. Its mark combines the 
 | Accent | `#2DD4A8` |
 | Role | Media download |
 | Symbol | Download arrow |
-| Family element | Four-corner selection frame |
+| Family element | Dark rounded-square tile with ivory highlights |
 
-The teal accent belongs to Voryda Down. Keep the arrow geometric and direct; the product should remain identifiable without adding service-specific symbols.
+The teal accent belongs to Voryda Down. Keep the arrow and receiving tray clear at small sizes; the icon does not use service-specific symbols.
 
 ## Family relationship
 
@@ -33,4 +34,4 @@ The teal accent belongs to Voryda Down. Keep the arrow geometric and direct; the
 | Voryda Down | Teal | Download arrow |
 | Voryda Cut | Coral | Diagonal cut |
 
-All four products use the same framing language, proportions and naming hierarchy while keeping their central function symbol distinct.
+All four icons share the dark rounded-square tile, warm ivory details and glossy finish. Their central symbols and accent colors distinguish each product.
