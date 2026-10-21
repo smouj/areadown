@@ -2,168 +2,124 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/logo.png">
-    <img src="assets/logo.png" alt="Voryda Down" width="220">
+    <img src="assets/logo.png" alt="Voryda Down app icon" width="180">
   </picture>
 </p>
 
 <h1 align="center">Voryda Down</h1>
 
 <p align="center">
-  <strong>Paste a URL. Pick a format. Download.</strong>
+  <strong>Paste a media URL, choose a format and download.</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4?style=flat-square" alt="Windows 10 and 11">
+  <img src="https://img.shields.io/badge/platform-Windows%2010%202004%2B%20%7C%2011-0078D4?style=flat-square" alt="Windows 10 version 2004 or later and Windows 11">
   <img src="https://img.shields.io/badge/.NET-8-512BD4?style=flat-square" alt=".NET 8">
-  <img src="https://img.shields.io/badge/UI-WinForms-5C2D91?style=flat-square" alt="WinForms">
+  <img src="https://img.shields.io/badge/UI-WinForms-5C2D91?style=flat-square" alt="Windows Forms">
   <img src="https://img.shields.io/badge/engine-yt--dlp%20%2B%20FFmpeg-555?style=flat-square" alt="yt-dlp and FFmpeg">
-  <img src="https://img.shields.io/badge/version-1.0.0-555?style=flat-square" alt="Version 1.0.0">
   <img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="MIT License">
 </p>
 
 <p align="center">
   <a href="#overview">Overview</a> ·
-  <a href="#current-status">Status</a> ·
-  <a href="#usage">Usage</a> ·
-  <a href="#build">Build</a> ·
-  <a href="#documentation">Docs</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#project-status">Status</a> ·
+  <a href="#build-from-source">Build</a> ·
   <a href="#privacy">Privacy</a>
 </p>
 
 ## Overview
 
-**Voryda Down** is a compact Windows front end for downloading media through **yt-dlp**, with **FFmpeg** available for format merging and media processing. It keeps the common workflow in one window: enter a URL, select a quality preset, optionally define a time range, choose a destination and start the download.
+**Voryda Down** is a native Windows front end for [yt-dlp](https://github.com/yt-dlp/yt-dlp). The C# and .NET 8 Windows Forms app provides a focused workflow for HTTP or HTTPS media URLs, quality selection, optional time ranges and local downloads. It launches yt-dlp as a child process and reports progress when yt-dlp provides it.
 
-The desktop application is written in C# with .NET 8 and WinForms. It tracks progress reported by yt-dlp, supports cancellation, remembers the last URL, quality and destination folder, and moves to the system tray when minimized.
+**yt-dlp is required and is not included in this repository.** FFmpeg is optional for workflows that need stream merging or media processing. Both are separate tools with their own licenses.
+
+## Features
+
+- Download a video using Best, 1080p, 720p or 480p quality options.
+- Save the best available audio stream in M4A format.
+- Set optional start and end timestamps using seconds, <code>MM:SS</code> or <code>HH:MM:SS</code>.
+- View progress, speed and estimated time when yt-dlp reports those values.
+- Cancel an active download.
+- Keep playlists disabled; each operation targets a single item.
+- Minimize the app to the system tray and restore it later.
+
+## Project status
+
+The project metadata declares version **1.0.0**. No public GitHub Release or release download is available yet.
 
 ## Screenshot
 
 ![Voryda Down screenshot](docs/screenshots/voryda-down.png)
 
-*Captured from the Windows app. Sample URL and local folder values are anonymized where applicable.*
-
-## Current status
-
-The repository declares version **1.0.0**. There is currently no GitHub Release published for this repository.
-
-| Capability | State | Notes |
-| --- | --- | --- |
-| HTTP/HTTPS URL input | **Implemented** | Input is validated before a download starts. |
-| Video download | **Implemented** | Runs yt-dlp as a local child process. |
-| Quality presets | **Implemented** | Best/1080p, 720p and 480p. |
-| Audio-only mode | **Implemented** | Requests the best audio stream and uses M4A as the merge format. |
-| Timestamp selection | **Implemented** | Accepts seconds, `MM:SS` or `HH:MM:SS`. |
-| Download progress | **Implemented** | Percentage, speed and ETA are parsed from yt-dlp output when available. |
-| Cancellation | **Implemented** | Terminates the running yt-dlp process tree. |
-| System tray | **Implemented** | The window hides to the tray when minimized; the tray menu can restore or exit. |
-| Global keyboard shortcut | **Not implemented** | The current application code does not register one. |
-| Playlists | **Disabled** | Downloads are started with `--no-playlist`. |
-| GitHub Release | **Not published** | No release asset is currently available from GitHub Releases. |
-
-## Quality presets
-
-| UI option | Download rule |
-| --- | --- |
-| **Best (merge)** | Best compatible video up to 1080p plus best audio, with fallbacks. |
-| **1080p** | Best compatible video up to 1080p plus best audio, with fallbacks. |
-| **720p** | Best compatible video up to 720p plus best audio, with fallbacks. |
-| **480p** | Best compatible video up to 480p plus best audio, with fallbacks. |
-| **Audio only (m4a)** | Best available audio stream; merge format set to M4A. |
-
-The exact streams available are determined by the source site and yt-dlp.
-
-## Usage
-
-1. Paste an HTTP or HTTPS media URL.
-2. Choose the desired quality preset.
-3. Optionally enter a **Start** time and an **End** time.
-4. Select the destination folder.
-5. Press **Download**.
-6. Use **Cancel** if the current operation needs to be stopped.
-
-Timestamp examples:
-
-```text
-83
-1:23
-0:01:23
-```
-
-When a time range is provided, Voryda Down passes the range to yt-dlp through `--download-sections` and requests keyframes at cuts.
+*The screenshot shows the current Windows application.*
 
 ## Runtime dependencies
 
-Voryda Down searches for its command-line tools in this order:
+The app looks for its command-line tools in this order:
 
-| Tool | Lookup |
+| Tool | Lookup locations |
 | --- | --- |
-| `yt-dlp.exe` | Application folder → `extraResources` → system `PATH` |
-| `ffmpeg.exe` | Application folder → `extraResources` → system `PATH` |
+| <code>yt-dlp.exe</code> | Application folder, <code>extraResources</code> folder, then system <code>PATH</code> |
+| <code>ffmpeg.exe</code> | Application folder, <code>extraResources</code> folder, then system <code>PATH</code> |
 
-**yt-dlp is required** to start a download. FFmpeg is used by yt-dlp when merging or processing formats that require it.
+Place the executables in one of those locations before using the corresponding workflow. yt-dlp is required for downloads. FFmpeg is needed when the selected streams or processing path require it.
+
+The available streams and extraction behavior depend on the source service and the installed yt-dlp version.
+
+## Usage
+
+1. Enter an HTTP or HTTPS media URL.
+2. Select a video quality or **Audio only (M4A)**.
+3. Optionally set a start and end time.
+4. Choose the destination folder.
+5. Start the download. Use **Cancel** to stop the active operation.
+
+Timestamp examples:
+
+    83
+    1:23
+    0:01:23
 
 ## Local data
 
-| Item | Location / default |
+| Item | Location or default |
 | --- | --- |
-| Settings | `%APPDATA%\AreaDown\settings.json` |
-| Default download folder | `%USERPROFILE%\Downloads` |
-| Default quality | Best |
-| Remembered values | Last URL, last quality and save folder |
+| Settings | <code>%APPDATA%\AreaDown\settings.json</code> |
+| Default download folder | <code>%USERPROFILE%\Downloads</code> |
+| Remembered values | Last URL, quality and destination folder |
 
-The `AreaDown` settings path and internal project names are retained for compatibility while the public product name moves to **Voryda Down**.
-
-## Architecture
-
-| Project | Responsibility |
-| --- | --- |
-| `AreaDown.App` | WinForms interface, local settings, validation, tray lifecycle and download orchestration. |
-| `AreaDown.Core` | Download settings, quality mapping, timestamp range and format models. |
-| `AreaDown.Downloader` | yt-dlp process wrapper, progress parser and FFmpeg clip-processing helper. |
+The <code>AreaDown</code> settings path and internal project names are retained for compatibility while the public product name is Voryda Down.
 
 ## Requirements
 
 - Windows 10 version 2004 (build 19041) or later, or Windows 11.
-- .NET 8 runtime for a framework-dependent build.
-- `yt-dlp.exe` available beside the application or on `PATH`.
-- FFmpeg available beside the application or on `PATH` for workflows that require merging or media processing.
-- .NET 8 SDK only when building from source.
+- .NET 8 Desktop Runtime to run a framework-dependent build.
+- .NET 8 SDK to build from source.
+- yt-dlp for all downloads; FFmpeg for workflows that require merging or processing.
 
-## Build
+## Build from source
 
-```powershell
-git clone https://github.com/smouj/voryda-down
-cd voryda-down
-dotnet build -c Release
-```
-
-Run the desktop application:
-
-```powershell
-dotnet run --project src\AreaDown.App\AreaDown.App.csproj
-```
+    git clone https://github.com/smouj/voryda-down
+    cd voryda-down
+    dotnet build -c Release
+    dotnet run --project src\AreaDown.App\AreaDown.App.csproj
 
 Create a self-contained Windows x64 build:
 
-```powershell
-dotnet publish src\AreaDown.App -c Release -r win-x64 --self-contained
-```
+    dotnet publish src\AreaDown.App -c Release -r win-x64 --self-contained
 
-For a runnable local package, place `yt-dlp.exe` and, when needed, `ffmpeg.exe` next to the published executable or make them available through `PATH`.
+This repository keeps its product and developer guidance in this README.
 
-## Documentation
+## Privacy and responsible use
 
-This repository keeps its product and developer guidance in this README; no separate docs tree is maintained.
+Voryda Down stores settings locally and has no account system or application telemetry in the current code. Downloading is a network operation: yt-dlp connects to the URL and may contact services required by the source site.
 
-## Privacy
-
-Voryda Down stores its own preferences locally and contains no account system or application telemetry in the current code. Downloading media is inherently a network operation: the application launches yt-dlp, which connects to the URL and services required to retrieve the requested media.
-
-Use Voryda Down only for content you are permitted to download. Site support and extraction behavior depend on the installed yt-dlp version and the source service.
+Use the app only for content you are authorized to download. yt-dlp and FFmpeg are independent projects and are distributed under their own licenses.
 
 ## License
 
-The Voryda Down source code is distributed under the **MIT License**. See [LICENSE](LICENSE). yt-dlp and FFmpeg are separate projects distributed under their own licenses.
+Voryda Down is distributed under the [MIT License](LICENSE).
 
 ---
 
@@ -173,11 +129,9 @@ The Voryda Down source code is distributed under the **MIT License**. See [LICEN
 </p>
 
 <p align="center">
-  <a href="https://github.com/smouj/voryda-snap">Snap</a>
-  ·
-  <a href="https://github.com/smouj/voryda-rec">Rec</a>
-  ·
-  <a href="https://github.com/smouj/voryda-down">Down</a>
-  ·
+  <a href="https://github.com/smouj/voryda-snap">Snap</a> ·
+  <a href="https://github.com/smouj/voryda-rec">Rec</a> ·
+  <a href="https://github.com/smouj/voryda-down">Down</a> ·
   <a href="https://github.com/smouj/voryda-cut">Cut</a>
 </p>
+
